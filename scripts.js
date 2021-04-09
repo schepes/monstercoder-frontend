@@ -4,7 +4,7 @@ var score = 0;
 var x = document.getElementById("myAudio");
 var timeImageIsShown = 2000;
 var dark = false;
-const btn = document.querySelector(".btn-toggle");
+const btn = document.querySelector("#btn-toggle");
 const theme = document.querySelector("#theme-link");
 
 $.getJSON("images.json", function (json) {
@@ -34,15 +34,22 @@ window.onload = function () {
         showFullPic();
     });
 
+    $("#btn-toggle").on("click", function () {
+        lightSwitch();
+    });
     showRandomImage();
 };
 
 function lightSwitch() {
     if (!dark) {
         theme.href = "style-dark.css";
+        // $('#aoh-btn').attr('class', "btn btn-dark");
+        // $('#nav-btn').attr('class', "btn btn-light");
         dark = true;
     } else {
         theme.href = "style.css";
+        // $('#aoh-btn').attr('class', "btn btn-light");
+        // $('#nav-btn').attr('class', "btn btn-dark");
         dark = false;
     }
 }
@@ -66,7 +73,11 @@ function showFullPic(success) {
     $('#main-image').attr('src', (selectedImage[0].imageLink));
 
     setTimeout(() => {
-        $('.btn').attr('class', "btn btn-dark");
+        if(!dark) {
+            $('#aoh-btn').attr('class', "btn btn-dark");
+        } else {
+            $('#aoh-btn').attr('class', "btn btn-light");
+        }
         showRandomImage();
 
     }, timeImageIsShown);
@@ -83,21 +94,6 @@ function showRandomImage() {
     // console.log("Object: " + selectedImage[0].imageLink);
 
     $('#main-image').attr('src', (selectedImage[0].imageLinkCropped));
-};
-
-function changeScore(success) {
-    if (success) {
-        score++;
-        chooseAudio(score);
-        playAudio();
-    } else {
-        score = 0;
-    }
-    $('#score-label').text("Score:" + score);
-
-    setTimeout(() => {
-        pauseAudio();
-    }, timeImageIsShown);
 };
 
 /////////////////////AUDIO/////////////////////////
