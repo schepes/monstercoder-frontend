@@ -43,13 +43,13 @@ window.onload = function () {
 function lightSwitch() {
     if (!dark) {
         theme.href = "style-dark.css";
-        // $('#aoh-btn').attr('class', "btn btn-dark");
-        // $('#nav-btn').attr('class', "btn btn-light");
+        $('#aoh-btn').attr('class', "btn btn-dark");
+        $('.nav-btn').attr('class', "btn btn-light");
         dark = true;
     } else {
         theme.href = "style.css";
-        // $('#aoh-btn').attr('class', "btn btn-light");
-        // $('#nav-btn').attr('class', "btn btn-dark");
+        $('#aoh-btn').attr('class', "btn btn-light");
+        $('.nav-btn').attr('class', "btn btn-dark");
         dark = false;
     }
 }
